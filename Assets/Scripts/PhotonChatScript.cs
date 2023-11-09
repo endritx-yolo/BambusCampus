@@ -20,7 +20,7 @@ public class PhotonChatScript : MonoBehaviour, IChatClientListener
     string privateReceiver = "";
     ChatClient chatClient;
     bool isConnected;
-    public bool ekashkruemrin = false;
+    [SerializeField] Button sendButton;
 
     
     [SerializeField] string username;
@@ -68,6 +68,7 @@ public class PhotonChatScript : MonoBehaviour, IChatClientListener
     void Start()
     {
         gameplay = GetComponent<Gameplay>();
+        sendButton.interactable = false;
     }
 
     // Update is called once per frame
@@ -78,9 +79,9 @@ public class PhotonChatScript : MonoBehaviour, IChatClientListener
             chatClient.Service();
         }
 
-        if (chatField.text != "" && Input.GetKey(KeyCode.Return))
+        if (chatField.text != "" )
         {
-            SubmitPublicChatOnClick();
+            sendButton.interactable = true;
         }
 
     }
@@ -105,7 +106,6 @@ public class PhotonChatScript : MonoBehaviour, IChatClientListener
         joinChatButton.SetActive(false);
         chatClient.Subscribe(new string[] { roomName });
 
-        ekashkruemrin = true;
         Debug.Log("room name: " + roomName);
 
     }
@@ -117,6 +117,7 @@ public class PhotonChatScript : MonoBehaviour, IChatClientListener
             chatClient.PublishMessage(roomName, currentChat);
             chatField.text = "";
             currentChat = "";
+            sendButton.interactable = false;
         }
     }
 
