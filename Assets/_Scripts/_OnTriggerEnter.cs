@@ -9,6 +9,7 @@ namespace Fusion.KCC
         [SerializeField] private GameObject StaffPanel;
         [SerializeField] private GameObject PressPKey;
         [SerializeField] private GameObject PressOKey;
+        [SerializeField] private GameObject chatPanel;
 
 
         private void OnTriggerEnter(Collider other)
@@ -36,6 +37,7 @@ namespace Fusion.KCC
                     PressPKey.gameObject.SetActive(false);
                     PressOKey.gameObject.SetActive(true);
                     StaffPanel.gameObject.SetActive(true);
+                    chatPanel.gameObject.SetActive(false);
                     Cursor.visible = true;
                     Cursor.lockState = CursorLockMode.None;
                 }
@@ -44,6 +46,7 @@ namespace Fusion.KCC
                     PressPKey.gameObject.SetActive(true);
                     PressOKey.gameObject.SetActive(false);
                     StaffPanel.gameObject.SetActive(false);
+                    chatPanel.gameObject.SetActive(true);
                     Cursor.visible = false;
                     Cursor.lockState = CursorLockMode.Locked;
                 }

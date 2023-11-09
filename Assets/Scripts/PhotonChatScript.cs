@@ -118,6 +118,8 @@ public class PhotonChatScript : MonoBehaviour, IChatClientListener
             chatField.text = "";
             currentChat = "";
             sendButton.interactable = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
     }
 

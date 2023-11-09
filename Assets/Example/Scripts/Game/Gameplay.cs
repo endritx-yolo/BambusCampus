@@ -25,7 +25,7 @@ namespace Example
         private void Start()
         {
 			photonChatScript = GetComponent<PhotonChatScript>();
-        }
+		}
         private void Awake()
 		{
 			NetworkEvents events = GetComponent<NetworkEvents>();
@@ -66,8 +66,18 @@ namespace Example
 			// Player must be always interested to his NetworkObject to prevent getting out of AoI (typically teleporting after setting AoI position)
 			runner.SetPlayerAlwaysInterested(playerRef, player, true);
 
-			Cursor.lockState = CursorLockMode.None;
-			Cursor.visible = true;
+			Canvas canvas = GameObject.Find("chatCanvas").GetComponent<Canvas>();
+
+			if (canvas != null)
+			{
+				GameObject uiPanel = canvas.transform.Find("chatPanel").gameObject;
+
+				if (uiPanel != null)
+				{
+					uiPanel.SetActive(true);
+				}
+			}
+
 		}
 
 		private void OnClientConnectedToServer(NetworkRunner runner)
