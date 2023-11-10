@@ -22,7 +22,9 @@ public class PhotonChatScript : MonoBehaviour, IChatClientListener
     bool isConnected;
     [SerializeField] Button sendButton;
 
-    
+    PlayerInput playerInput;
+
+
     [SerializeField] string username;
 
     private string roomName;
@@ -34,7 +36,7 @@ public class PhotonChatScript : MonoBehaviour, IChatClientListener
         username = valueIn;
     }
 
-    
+
     public void ChatConnectOnClick()
     {
         isConnected = true;
@@ -79,9 +81,14 @@ public class PhotonChatScript : MonoBehaviour, IChatClientListener
             chatClient.Service();
         }
 
-        if (chatField.text != "" )
+        if (chatField.text != "")
         {
             sendButton.interactable = true;
+        }
+
+        if (privateReceiver != "" && Input.GetKey(KeyCode.Return))
+        {
+            SubmitPublicChatOnClick();
         }
 
     }
@@ -110,6 +117,7 @@ public class PhotonChatScript : MonoBehaviour, IChatClientListener
 
     }
 
+
     public void SubmitPublicChatOnClick()
     {
         if (privateReceiver == "")
@@ -120,6 +128,21 @@ public class PhotonChatScript : MonoBehaviour, IChatClientListener
             sendButton.interactable = false;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+            GameObject playerInputScript = GameObject.FindWithTag("Player");
+            if (playerInputScript != null)
+            {
+                playerInput = playerInputScript.GetComponent<PlayerInput>();
+
+                if (playerInput != null)
+                {
+                    bool myBoolValue = playerInput.GetMyBool();
+
+                    playerInput.SetMyBool(true);
+
+                    myBoolValue = playerInput.GetMyBool();
+
+                }
+            }
         }
     }
 
@@ -137,8 +160,6 @@ public class PhotonChatScript : MonoBehaviour, IChatClientListener
 
             chatDisplay.text += "\n" + msgs;
 
-            Debug.Log(msgs);
-
         }
     }
 
@@ -150,7 +171,6 @@ public class PhotonChatScript : MonoBehaviour, IChatClientListener
 
         chatDisplay.text += "\n" + msgs;
 
-        Debug.Log(msgs);
     }
 
     public void OnStatusUpdate(string user, int status, bool gotMessage, object message)

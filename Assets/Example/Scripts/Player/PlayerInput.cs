@@ -17,6 +17,7 @@ namespace Example
 	public sealed class PlayerInput : NetworkBehaviour, IBeforeUpdate, IBeforeAllTicks, IBeforeTick
 	{
 		// PUBLIC MEMBERS
+		public bool canMove = true;
 
 		/// <summary>
 		/// Holds input for fixed update.
@@ -352,23 +353,25 @@ namespace Example
 				Keyboard keyboard = Keyboard.current;
 
 				// Cursor lock processing.
-				if (keyboard != null && (keyboard.enterKey.wasPressedThisFrame == true || keyboard.numpadEnterKey.wasPressedThisFrame == true))
+				if (keyboard != null && (keyboard.yKey.wasPressedThisFrame == true))
 				{
 					if (Cursor.lockState == CursorLockMode.Locked)
 					{
 						Cursor.lockState = CursorLockMode.None;
 						Cursor.visible = true;
-					}
+						canMove = false;
+                    }
 					else
 					{
 						Cursor.lockState = CursorLockMode.Locked;
 						Cursor.visible = false;
+						canMove = true;
 					}
 				}
 
 				// Input is tracked only if the cursor is locked.
-				if (Cursor.lockState != CursorLockMode.Locked)
-					return;
+				//if (Cursor.lockState != CursorLockMode.Locked)
+				//	return;
 			}
 
 			// Don't process the input if the ignore time is active.
@@ -596,7 +599,7 @@ namespace Example
 			}
 
 			Keyboard keyboard = Keyboard.current;
-			if (keyboard != null)
+			if (keyboard != null && canMove)
 			{
 				if (keyboard.mKey.isPressed == true && keyboard.leftCtrlKey.isPressed == true && keyboard.leftShiftKey.isPressed == true)
 				{
@@ -656,6 +659,16 @@ namespace Example
 			_cachedInput.Actions            = new NetworkButtons(_cachedInput.Actions.Bits | _renderInput.Actions.Bits);
 			_cachedInput.MoveDirection      = _cachedMoveDirection / _cachedMoveDirectionSize;
 			_cachedInput.LookRotationDelta += _renderInput.LookRotationDelta;
+		}
+
+		public bool GetMyBool()
+        {
+			return canMove;
+        }
+
+		public void SetMyBool(bool value)
+		{
+			canMove = value;
 		}
 
 		private void ProcessMobileInput()
