@@ -151,6 +151,11 @@ namespace Example
 				KCC.SetSprint(Input.FixedInput.Sprint);
 			}
 
+            if (Input.WasActivated(EGameplayInputAction.Fly) == true)
+            {
+				KCC.SetFly(Input.FixedInput.Fly);
+            }
+
 			if (Input.WasActivated(EGameplayInputAction.Dash) == true)
 			{
 				// Dash is movement related action, should be processed before KCC ticks.

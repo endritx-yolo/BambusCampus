@@ -14,6 +14,7 @@ public class SimpleAnimator : NetworkBehaviour
     private bool isJump;
     private bool isMoving;
     private bool isSprint;
+    private bool isFly;
     #endregion
 
     // STATIC MEMBER
@@ -33,6 +34,8 @@ public class SimpleAnimator : NetworkBehaviour
     private static readonly int IS_GROUNDED_PARAM_HASH = Animator.StringToHash("Grounded");
     private static readonly int FALL_PARAM_HASH = Animator.StringToHash("FreeFall");
     private static readonly int MOTION_SPEED_PARAM_HASH = Animator.StringToHash("MotionSpeed");
+    private static readonly int FLY_HASH = Animator.StringToHash("Fly");
+
     #endregion
 
     protected void Awake()
@@ -75,6 +78,8 @@ public class SimpleAnimator : NetworkBehaviour
         isGrounded = fixedData.IsGrounded; // check grounded state from KCC
         isJump = fixedData.HasJumped; // check jump state from KCC
         isSprint = fixedData.Sprint; // chechk sprint state KCC
+        isFly = fixedData.Fly; //Check if F key is pressed from KCC
+
     }
 
     private void AnimatorBridge()
@@ -83,6 +88,11 @@ public class SimpleAnimator : NetworkBehaviour
 
         animator.SetFloat(MOTION_SPEED_PARAM_HASH, MULTIPLIER); // Add speed multiplier to Idle Walk Run Blend blend Tree
         animator.SetBool(IS_GROUNDED_PARAM_HASH, isGrounded); // set grounded bool state based on kcc.FixedData.IsGrounded
+
+        if (isFly)
+        {
+            animator.SetBool(FLY_HASH, true);
+        }
 
         if (isJump)
         {
