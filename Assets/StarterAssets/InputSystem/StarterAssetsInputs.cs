@@ -1,4 +1,5 @@
 using UnityEngine;
+using InGameDebugging;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
@@ -45,6 +46,18 @@ namespace StarterAssets
 		public void OnInteract(InputValue value)
 		{
 			InteractInput(value.isPressed);
+		}
+
+		public void OnToggleDebug(InputValue value)
+		{
+			if (DebugController.Instance != null)
+				DebugController.Instance.ToggleDebug();
+		}
+
+		public void OnReturn(InputValue value)
+		{
+			if (DebugController.Instance != null)
+				DebugController.Instance.OnHitReturn();
 		}
 #endif
 

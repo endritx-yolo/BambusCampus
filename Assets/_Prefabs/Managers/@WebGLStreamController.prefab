@@ -51,7 +51,7 @@ MonoBehaviour:
     rawImage: {fileID: 0}
     renderTexture: {fileID: 8400000, guid: cb10a7111b8d25b4ba901391ae334061, type: 2}
     url:
-    - https://dai.google.com/linear/hls/pa/event/Sid4xiTQTkCT1SLu6rjUSQ/stream/ce30af49-05ff-4d1f-9f19-e58474c48f99:BRU/variant/a2490d3c744cd6c7e5676ecfc6956ee9/bandwidth/343641.m3u8
+    - https://dai.google.com/linear/hls/pa/event/Sid4xiTQTkCT1SLu6rjUSQ/stream/ea0c80c8-0908-40e5-b2b2-abad1511c3fd:BRU/variant/9d102376758f0f0f4b40bf244f370f11/bandwidth/1093281.m3u8
     autoPlay: 1
     enableDRM: 0
     keyServerURI: []
@@ -62,7 +62,7 @@ MonoBehaviour:
     rawImage: {fileID: 0}
     renderTexture: {fileID: 8400000, guid: d6b7b3663c720e8498ce3bb5dd684c57, type: 2}
     url:
-    - https://dai.google.com/linear/hls/pa/event/Sid4xiTQTkCT1SLu6rjUSQ/stream/ce30af49-05ff-4d1f-9f19-e58474c48f99:BRU/variant/a2490d3c744cd6c7e5676ecfc6956ee9/bandwidth/343641.m3u8
+    - https://dai.google.com/linear/hls/pa/event/Sid4xiTQTkCT1SLu6rjUSQ/stream/ea0c80c8-0908-40e5-b2b2-abad1511c3fd:BRU/variant/9d102376758f0f0f4b40bf244f370f11/bandwidth/1093281.m3u8
     autoPlay: 1
     enableDRM: 0
     keyServerURI: []
