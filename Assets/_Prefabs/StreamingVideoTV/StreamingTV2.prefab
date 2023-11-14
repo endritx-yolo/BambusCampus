@@ -31,5 +31,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: StreamingTV2
       objectReference: {fileID: 0}
+    - target: {fileID: 7644465870638706102, guid: e77dd7a48132ae64d80878ebfc23c702, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6e5749cf04ebe2e419e06044cc60a6f9, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e77dd7a48132ae64d80878ebfc23c702, type: 3}

@@ -1,3 +1,4 @@
+using System.IO;
 using HISPlayerAPI;
 using UnityEngine;
 
@@ -8,18 +9,34 @@ namespace VideoStreaming
         private static WebGLStreamController _instance;
         public static WebGLStreamController Instance => _instance;
 
+        private VideoStreamingProperties _videoStreamingProperties;
+
         protected override void Awake()
         {
+            ReadJsonFile();
+
             if (_instance == null)
                 _instance = this;
             else
             {
-                //Destroy(gameObject);
+                Destroy(gameObject);
                 return;
             }
 
+            for (int i = 0; i < multiStreamProperties.Count; i++)
+                multiStreamProperties[i].url[0] = _videoStreamingProperties.videoStreamingProperties[i].url;
+
             base.Awake();
             SetUpPlayer();
+        }
+
+        private void ReadJsonFile()
+        {
+            string filePath = Path.Combine(Application.streamingAssetsPath, "properties.json");
+            string dataAsJson = File.ReadAllText(filePath);
+            Debug.LogWarning(dataAsJson);
+            if (!File.Exists(filePath)) return;
+            _videoStreamingProperties = JsonUtility.FromJson<VideoStreamingProperties>(dataAsJson);
         }
 
 #if UNITY_EDITOR
@@ -91,7 +108,7 @@ namespace VideoStreaming
                     $"Stream index '{streamIndex}' is greater or equals to the total stream count of {multiStreamProperties.Count}.");
                 return;
             }
-            
+
             SelectCaptionTrack(streamIndex, ccTrackIndex);
         }
     }
