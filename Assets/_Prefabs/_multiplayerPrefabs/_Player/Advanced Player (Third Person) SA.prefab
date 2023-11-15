@@ -21,7 +21,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2914468787119353476, guid: f0d5b9143a4f0db4a93828cfd6cbe46e, type: 3}
       propertyPath: StateHashes.Array.size
-      value: 11
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 2914468787119353476, guid: f0d5b9143a4f0db4a93828cfd6cbe46e, type: 3}
       propertyPath: StateHashes.Array.data[9]
@@ -30,6 +30,14 @@ PrefabInstance:
     - target: {fileID: 2914468787119353476, guid: f0d5b9143a4f0db4a93828cfd6cbe46e, type: 3}
       propertyPath: StateHashes.Array.data[10]
       value: 1319883190
+      objectReference: {fileID: 0}
+    - target: {fileID: 2914468787119353476, guid: f0d5b9143a4f0db4a93828cfd6cbe46e, type: 3}
+      propertyPath: StateHashes.Array.data[11]
+      value: -662733300
+      objectReference: {fileID: 0}
+    - target: {fileID: 2914468787119353476, guid: f0d5b9143a4f0db4a93828cfd6cbe46e, type: 3}
+      propertyPath: StateHashes.Array.data[12]
+      value: -251648930
       objectReference: {fileID: 0}
     - target: {fileID: 2943091669937434962, guid: f0d5b9143a4f0db4a93828cfd6cbe46e, type: 3}
       propertyPath: m_TagString

@@ -89,14 +89,23 @@ public class SimpleAnimator : NetworkBehaviour
         animator.SetFloat(MOTION_SPEED_PARAM_HASH, MULTIPLIER); // Add speed multiplier to Idle Walk Run Blend blend Tree
         animator.SetBool(IS_GROUNDED_PARAM_HASH, isGrounded); // set grounded bool state based on kcc.FixedData.IsGrounded
 
-        if (isFly)
-        {
-            animator.SetBool(FLY_HASH, true);
-        }
+
 
         if (isJump)
         {
             animator.SetBool(JUMP_PARAM_HASH, true); // set jump if kcc.FixedData.HasJumped
+        }
+
+        if (isFly)
+        {
+            animator.SetBool(FLY_HASH, true);
+            animator.SetBool(IS_GROUNDED_PARAM_HASH, !isGrounded);
+
+        }
+        if (!isFly)
+        {
+            animator.SetBool(FLY_HASH, false);
+            animator.SetBool(IS_GROUNDED_PARAM_HASH, isGrounded);
         }
 
         if (isGrounded)
@@ -104,6 +113,7 @@ public class SimpleAnimator : NetworkBehaviour
             // set false to jump and fall parameter when grounded
             animator.SetBool(JUMP_PARAM_HASH, false);
             animator.SetBool(FALL_PARAM_HASH, false);
+
 
             if (!isMoving)
             {
