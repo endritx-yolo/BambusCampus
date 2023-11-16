@@ -43,7 +43,7 @@
         "InputDataWordCount": 0,
         "TickRate": 128,
         "MaxPrediction": 60,
-        "DefaultPlayers": 10,
+        "DefaultPlayers": 255,
         "ReplicationMode": 1,
         "ObjectInterest": true,
         "ServerPacketInterval": 1,
@@ -155,7 +155,8 @@
     },
     "AssembliesToWeave": [
         "Assembly-CSharp",
-        "Assembly-CSharp-firstpass"
+        "Assembly-CSharp-firstpass",
+        "PhotonVoice.Fusion"
     ],
     "UseSerializableDictionary": true,
     "NullChecksForNetworkedProperties": true,

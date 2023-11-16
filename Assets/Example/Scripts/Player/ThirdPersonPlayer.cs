@@ -162,6 +162,7 @@ namespace Example
 				{
 					Debug.Log("Second If");
 					KCC.Data.Fly = false;
+
 				}
 			}
 
