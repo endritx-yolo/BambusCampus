@@ -13,6 +13,7 @@ namespace Example
 		Sprint       = 5,
 		LeftTrigger  = 6,
 		RightTrigger = 7,
+		Fly = 8,
 	}
 
 	/// <summary>
@@ -40,6 +41,7 @@ namespace Example
 		public bool Sprint       { get { return Actions.IsSet(EGameplayInputAction.Sprint);       } set { Actions.Set(EGameplayInputAction.Sprint,       value); } }
 		public bool LeftTrigger  { get { return Actions.IsSet(EGameplayInputAction.LeftTrigger);  } set { Actions.Set(EGameplayInputAction.LeftTrigger,  value); } }
 		public bool RightTrigger { get { return Actions.IsSet(EGameplayInputAction.RightTrigger); } set { Actions.Set(EGameplayInputAction.RightTrigger, value); } }
+		public bool Fly { get { return Actions.IsSet(EGameplayInputAction.Fly); } set { Actions.Set(EGameplayInputAction.Fly, value); } }
 	}
 
 	public static class GameplayInputActionExtensions

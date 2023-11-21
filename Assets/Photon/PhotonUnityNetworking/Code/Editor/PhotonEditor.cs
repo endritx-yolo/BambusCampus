@@ -217,7 +217,7 @@ namespace Photon.Pun
         // called in editor, opens wizard for initial setup, keeps scene PhotonViews up to date and closes connections when compiling (to avoid issues)
         private static void OnProjectChanged()
         {
-            PhotonEditorUtils.ProjectChangedWasCalled = true;
+            //PhotonEditorUtils.ProjectChangedWasCalled = true;
 
 
             // Prevent issues with Unity Cloud Builds where ServerSettings are not found.

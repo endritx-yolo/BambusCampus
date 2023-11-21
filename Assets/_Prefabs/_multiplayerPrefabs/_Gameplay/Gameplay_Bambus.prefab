@@ -7,10 +7,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3140406705547281127, guid: 36ba3480ded34f441a0d952459870465, type: 3}
-      propertyPath: _defaultPlayer
-      value: 
-      objectReference: {fileID: 7686879365866573061, guid: c237e27f30de96f4a933deca330f7fde, type: 3}
     - target: {fileID: 4753164738901776644, guid: 36ba3480ded34f441a0d952459870465, type: 3}
       propertyPath: m_Name
       value: Gameplay_Bambus

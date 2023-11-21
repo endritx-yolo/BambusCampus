@@ -33,6 +33,13 @@ namespace Fusion.KCC
 			// And even more correct is to force SetSprint() being called always before the update.
 		}
 
+		public void SetFly(bool fly)
+        {
+			if (HasAnyAuthority == false)
+				return;
+
+			Data.Fly = fly;
+        }
 		// Here you can add your own methods
 
 		// PARTIAL METHODS

@@ -634,6 +634,7 @@ namespace Example
 				_renderInput.Jump   = keyboard.spaceKey.isPressed;
 				_renderInput.Dash   = keyboard.tabKey.isPressed;
 				_renderInput.Sprint = keyboard.leftShiftKey.isPressed;
+				_renderInput.Fly = keyboard.fKey.isPressed;
 
 				if (Object.HasInputAuthority == true)
 				{
