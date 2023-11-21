@@ -10,18 +10,19 @@ namespace VideoStreaming
 
         private void OnEnable()
         {
-            TVHolder.OnAddToCollection += TVHolder_OnAddToCollection;
+            if (TVController.Instance != null)
+                TVController.OnAddToCollection += TVHolder_OnAddToCollection;
         }
 
         private void OnDisable()
         {
-            TVHolder.OnAddToCollection -= TVHolder_OnAddToCollection;
+            if (TVController.Instance != null)
+                TVController.OnAddToCollection -= TVHolder_OnAddToCollection;
         }
 
         private List<StreamingTV> TVHolder_OnAddToCollection(List<StreamingTV> streamingTVList)
         {
             streamingTVList.Add(this);
-            Debug.LogWarning(this);
             return streamingTVList;
         }
 
