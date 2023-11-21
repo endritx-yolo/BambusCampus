@@ -1,0 +1,13 @@
+{
+  "videoStreamingProperties":
+  [
+    {
+      "playerIndex": 0,
+      "url": "https://dai.google.com/linear/hls/pa/event/Sid4xiTQTkCT1SLu6rjUSQ/stream/ea0c80c8-0908-40e5-b2b2-abad1511c3fd:BRU/variant/9d102376758f0f0f4b40bf244f370f11/bandwidth/1093281.m3u8"
+    },
+    {
+      "playerIndex": 1,
+      "url": "https://content-aeui1.uplynk.com/channel/3324f2467c414329b3b0cc5cd987b6be/d.m3u8?rays=hjigfedcba&ad.flex=15&ad.access_level=0&expand=drmOff&v=3&ad.adunit=/abc-news/abcnews.com/web/video&ad=abcnews_live&ad.pp=datg-live-vdms&ad.v=2&ad.is_lat=0&ad.npa=0&ad.tfcd=0&ad.vast3=1&ad.vid=$program_id&ad.description_url=https://abcnews.go.com/&ad.ppid=21226301e16a47009f0057fa9574394d&ad.us_privacy=&prbd.server=drax&ad.prbd=drax&ad.rdp=0&ad.cust_params=chan%3Dabc%26beacTyp%3Dssai%26stp%3Dvdms%26ait%3Dssai%26vdm%3Dlive%26var%3D16x9%26accesslevel%3D0%26isAuth%3D0%26lang%3Den%26aff%3Dabc%26swid%3D21226301-e16a-4700-9f00-57fa9574394d%26tag%3D%26objid%3Dabc_live11%26refDomain%3Dhttps%3A%2F%2Fabcnews.go.com%2FLive%26plt%3Dweb%26d_us_privacy%3D&ad.adUnit=/abc-news/abcnews.com/web/video&pbs=f3a2b2c03a064b89941d9fba328ee66d"
+    }
+  ]
+}
