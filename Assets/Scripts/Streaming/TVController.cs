@@ -20,13 +20,7 @@ namespace VideoStreaming
         [BoxGroup("Hearing Distance"), SerializeField]
         private float _hearingDistance = 30f;
 
-        private void Start()
-        {
-            _streamingTVList = OnAddToCollection(_streamingTVList);
-            Assert.IsNotNull(PlayerPosition.Instance,
-                $"Please attach the PlayerPosition.cs to the player gameobject. Video streams will not update their volume according to player distance.");
-        }
-
+        private void Start() => _streamingTVList = OnAddToCollection(_streamingTVList);
         private void Update() => HandleTVVolume();
 
         private void HandleTVVolume()
@@ -36,7 +30,7 @@ namespace VideoStreaming
                 float newVolume = 0f;
                 float distanceToPlayer = float.PositiveInfinity;
                 Vector3 tvPosition = _streamingTVList[0].transform.position;
-                
+
                 if (PlayerPosition.Instance != null)
                 {
                     Vector3 playerPosition = PlayerPosition.Instance.GetWorldPosition;
