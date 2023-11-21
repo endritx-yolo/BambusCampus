@@ -66,17 +66,7 @@ namespace Example
 			// Player must be always interested to his NetworkObject to prevent getting out of AoI (typically teleporting after setting AoI position)
 			runner.SetPlayerAlwaysInterested(playerRef, player, true);
 
-			Canvas canvas = GameObject.Find("chatCanvas").GetComponent<Canvas>();
-
-			if (canvas != null)
-			{
-				GameObject uiPanel = canvas.transform.Find("chatPanel").gameObject;
-
-				if (uiPanel != null)
-				{
-					uiPanel.SetActive(true);
-				}
-			}
+			
 
 		}
 
@@ -111,7 +101,18 @@ namespace Example
                 PlayerConfig playerConfig = GetLocalPlayerConfig();
                 SpawnPlayer(runner, playerRef, playerConfig);
             }
-        }
+			Canvas canvas = GameObject.Find("chatCanvas").GetComponent<Canvas>();
+
+			if (canvas != null)
+			{
+				GameObject uiPanel = canvas.transform.Find("chatPanel").gameObject;
+
+				if (uiPanel != null)
+				{
+					uiPanel.SetActive(true);
+				}
+			}
+		}
 
         private void OnPlayerLeft(NetworkRunner runner, PlayerRef playerRef)
 		{

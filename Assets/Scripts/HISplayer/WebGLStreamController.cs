@@ -1,6 +1,12 @@
+using System;
+using System.Collections;
 using System.IO;
+using System.Net;
+using System.Net.Http;
+using System.Text;
 using HISPlayerAPI;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace VideoStreaming
 {
@@ -9,11 +15,20 @@ namespace VideoStreaming
         private static WebGLStreamController _instance;
         public static WebGLStreamController Instance => _instance;
 
+        private const string _staticPath = "D:\\Unity Repos\\BambusCampus\\Builds\\StreamingAssets\\properties.json";
+
+        private const string _urlPath =
+            @"ftp://endrit.xhemaili%2540yolo-way.com@92.205.8.194/unity_showrooms/bambus_hisplayer_showroom/livestream.txt";
+
         private VideoStreamingProperties _videoStreamingProperties;
 
         protected override void Awake()
         {
-            ReadJsonFile();
+            //ReadJsonFile();
+            //byte[] byteArray = ReadUrlHTTPRequest();
+            //string textstring = Convert.ToBase64String(text);
+            
+            string result = ReadUrlHTTPRequest();
 
             if (_instance == null)
                 _instance = this;
@@ -23,21 +38,70 @@ namespace VideoStreaming
                 return;
             }
 
+            
             for (int i = 0; i < multiStreamProperties.Count; i++)
-                multiStreamProperties[i].url[0] = _videoStreamingProperties.videoStreamingProperties[i].url;
+                multiStreamProperties[i].url[0] = result;
+            
 
             base.Awake();
             SetUpPlayer();
         }
 
+        private void Start() => SetNewVolume(1f);
+
         private void ReadJsonFile()
         {
             string filePath = Path.Combine(Application.streamingAssetsPath, "properties.json");
+#if UNITY_WEBGL
+            filePath = filePath.Replace("/", "");
+            filePath = _staticPath;
+#endif
             string dataAsJson = File.ReadAllText(filePath);
-            Debug.LogWarning(dataAsJson);
-            if (!File.Exists(filePath)) return;
             _videoStreamingProperties = JsonUtility.FromJson<VideoStreamingProperties>(dataAsJson);
         }
+
+        private string ReadUrlHTTPRequest()
+        {
+            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(new Uri(_urlPath));
+
+            request.UsePassive = true;
+            request.UseBinary = true;
+            request.KeepAlive = true;
+
+            request.Credentials = new NetworkCredential("endrit.xhemaili@yolo-way.com", "k2){^Kp=^}pN");
+            request.Method = WebRequestMethods.Ftp.DownloadFile;
+
+            return DownloadAsByteArray(request.GetResponse());
+
+            /*UnityWebRequest myWr = UnityWebRequest.Get(_urlPath);
+            yield return myWr.SendWebRequest();
+
+            if (myWr.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogWarning(myWr.error);
+                yield break;
+            }
+            Debug.LogWarning(myWr.downloadHandler.text);
+            byte[] results = myWr.downloadHandler.data;
+            for (int i = 0; i < results.Length; i++)
+            {
+                Debug.LogWarning(results[i].ToString());
+            }*/
+        }
+
+        private string DownloadAsByteArray(WebResponse request)
+        {
+            using (Stream input = request.GetResponseStream())
+            {
+                byte[] buffer = new byte[16 * 1024];
+                using (StreamReader reader = new StreamReader(input))
+                {
+                    string fileContent = reader.ReadToEnd();
+                    return fileContent;
+                }
+            }
+        }
+
 
 #if UNITY_EDITOR
         private void OnApplicationQuit() => Release();
@@ -92,6 +156,18 @@ namespace VideoStreaming
             volume = Mathf.Clamp(volume, 0f, 1f);
             for (int i = 0; i < multiStreamProperties.Count; i++)
                 SetVolume(i, volume);
+        }
+
+        public void SetNewVolume(int streamIndex, float volume)
+        {
+            if (streamIndex >= multiStreamProperties.Count)
+            {
+                Debug.LogError(
+                    $"Stream index '{streamIndex}' is greater or equals to the total stream count of {multiStreamProperties.Count}.");
+                return;
+            }
+            
+            SetVolume(streamIndex, volume);
         }
 
         public void ChangeSpeedRate(float newSpeed)

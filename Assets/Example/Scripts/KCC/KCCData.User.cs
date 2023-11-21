@@ -9,7 +9,7 @@ namespace Fusion.KCC
 		// PUBLIC MEMBERS
 
 		public bool Sprint;
-
+		public bool Fly;
 		// PARTIAL METHODS
 
 		partial void ClearUserData()
@@ -24,6 +24,7 @@ namespace Fusion.KCC
 			// This method is also executed after fixed updates to copy fixed data to render data.
 
 			Sprint = other.Sprint;
+			Fly = other.Fly;
 		}
 	}
 }
