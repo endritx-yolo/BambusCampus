@@ -7,49 +7,61 @@ namespace Fusion.KCC
 {
     public class _MuteVoice : MonoBehaviour
     {
-        // Name of the GameObject containing the Recorder script
-        public string recorderGameObjectName = "RecorderGameObject";
+        // Name of the GameObjects containing the Recorder script
+        public string recorderGameObjectName = "Recorder";
 
-        // Reference to the Recorder script
-        private Recorder recorder;
+        // List to store all found Recorder scripts
+        private List<Recorder> recorders = new List<Recorder>();
 
         // Start is called before the first frame update
         void Start()
         {
-            // Find the GameObject with the specified name
-            GameObject recorderGameObject = GameObject.Find(recorderGameObjectName);
+            // Find all GameObjects with the specified name
+            GameObject[] recorderGameObjects = GameObject.FindObjectsOfType<GameObject>();
 
-            if (recorderGameObject != null)
+            foreach (GameObject recorderGameObject in recorderGameObjects)
             {
-                // Get the Recorder script component from the GameObject
-                recorder = recorderGameObject.GetComponent<Recorder>();
-
-                if (recorder == null)
+                // Check if the GameObject's name matches the specified name
+                if (recorderGameObject.name == recorderGameObjectName)
                 {
-                    Debug.LogError("Recorder script not found on the GameObject: " + recorderGameObjectName);
+                    // Get the Recorder script component from each GameObject
+                    Recorder foundRecorder = recorderGameObject.GetComponent<Recorder>();
+
+                    if (foundRecorder != null)
+                    {
+                        recorders.Add(foundRecorder);
+                    }
+                    else
+                    {
+                        Debug.LogError("Recorder script not found on the GameObject: " + recorderGameObject.name);
+                    }
                 }
             }
-            else
+
+            if (recorders.Count == 0)
             {
-                Debug.LogError("GameObject with name " + recorderGameObjectName + " not found in the scene.");
+                Debug.LogError("No Recorder scripts found with the name: " + recorderGameObjectName);
             }
         }
 
         // Update is called once per frame
         void Update()
         {
-            // Check for user input or some other condition to toggle recordingEnabled
+            // Check for user input or some other condition to toggle recordingEnabled for all found Recorders
             if (Input.GetKeyDown(KeyCode.M))
             {
-                // Toggle the recordingEnabled variable
-                if (recorder != null)
+                // Toggle the recordingEnabled variable for all found Recorders
+                foreach (Recorder recorder in recorders)
                 {
-                    recorder.recordingEnabled = !recorder.recordingEnabled;
-                    Debug.Log("Recording Enabled: " + recorder.recordingEnabled);
-                }
-                else
-                {
-                    Debug.LogError("Recorder script reference is null.");
+                    if (recorder != null)
+                    {
+                        recorder.RecordingEnabled = !recorder.RecordingEnabled;
+                        Debug.Log("Recording Enabled: " + recorder.RecordingEnabled + " for Recorder: " + recorder.gameObject.name);
+                    }
+                    else
+                    {
+                        Debug.LogError("Recorder script reference is null.");
+                    }
                 }
             }
         }
