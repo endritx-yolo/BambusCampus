@@ -90,7 +90,7 @@ namespace Photon.Voice.Unity
         private bool loopAudioClip = true;
 
         [SerializeField]
-        private bool recordingEnabled = true;
+        public bool recordingEnabled = true;
 
         private Func<IAudioDesc> inputFactory;
 

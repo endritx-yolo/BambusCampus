@@ -95,3 +95,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1583452459391225434, guid: f0d5b9143a4f0db4a93828cfd6cbe46e, type: 3}
   m_PrefabInstance: {fileID: 2743711939154017294}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4080756364774615278 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2211932844006823136, guid: f0d5b9143a4f0db4a93828cfd6cbe46e, type: 3}
+  m_PrefabInstance: {fileID: 2743711939154017294}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8995022065065445916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4080756364774615278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7de11d2c2e673464dae3e2aee7a4253e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recorderGameObjectName: Recorder
