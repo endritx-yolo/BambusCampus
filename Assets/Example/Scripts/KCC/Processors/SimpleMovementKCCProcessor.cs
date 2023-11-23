@@ -20,6 +20,9 @@ namespace Fusion.Example
 		private float _kinematicSpeed = 8.0f;
 		[SerializeField][Tooltip("Custom jump multiplier.")]
 		private float _jumpMultiplier = 1.0f;
+		[SerializeField]
+		[Tooltip("Custom jump multiplier.")]
+		private float _flyMultiplier = 2.0f;
 		[SerializeField][Tooltip("Custom gravity multiplier.")]
 		private float _gravityMultiplier = 1.0f;
 		[SerializeField][Tooltip("Dynamic velocity is decelerated by actual dynamic speed multiplied by this. The faster KCC moves, the more deceleration is applied.")]
@@ -34,6 +37,7 @@ namespace Fusion.Example
 		private float _kinematicAirAcceleration = 5.0f;
 		[SerializeField][Tooltip("Kinematic velocity is decelerated by actual kinematic speed multiplied by this. The faster KCC moves, the more deceleration is applied.")]
 		private float _kinematicAirFriction = 2.0f;
+		[SerializeField] private float _fly;
 
 		// BaseKCCProcessor INTERFACE
 
@@ -85,6 +89,16 @@ namespace Fusion.Example
 
 				data.HasJumped = true;
 			}
+
+            if (fixedData.IsGrounded == true && data.FlyImpulse.IsZero() == false && _flyMultiplier > 0.0f)
+            {
+				Vector3 flyDirection = data.FlyImpulse.normalized;
+
+				dynamicVelocity -= Vector3.Scale(dynamicVelocity, flyDirection);
+				dynamicVelocity += (data.FlyImpulse / kcc.Settings.Mass) * _flyMultiplier;
+
+				data.Fly = true;
+            }
 
 			dynamicVelocity += data.ExternalVelocity;
 			dynamicVelocity += data.ExternalAcceleration * fixedDeltaTime;

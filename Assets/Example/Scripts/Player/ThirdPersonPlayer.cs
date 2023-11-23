@@ -53,6 +53,7 @@ namespace Example
 			bool       updateLookRotation = default;
 			Quaternion facingRotation     = default; // default is invalid (not set)
 			Quaternion jumpRotation       = default; // default is invalid (not set)
+			Quaternion flyRotation = default; // default is invalid (not set)
 
 			// Checking look rotation update conditions
 			if (HasLookRotationUpdateSource(ELookRotationUpdateSource.Jump)          == true) { updateLookRotation |= Input.WasActivated(EGameplayInputAction.Jump);        }
@@ -76,6 +77,7 @@ namespace Example
 				// Setting base facing and jump rotation
 				facingRotation = KCC.FixedData.TransformRotation;
 				jumpRotation   = KCC.FixedData.TransformRotation;
+
 			}
 
 			Vector3 inputDirection    = default;
@@ -155,15 +157,17 @@ namespace Example
 			{
 				if (KCC.Data.Fly != true)
 				{
-					KCC.SetFly(Input.FixedInput.Fly);
+					//KCC.SetFly(Input.FixedInput.Fly);
+					KCC.Jump(flyRotation * FlyImpulse);
 					Debug.Log("First if");
 				}
 				else if (KCC.Data.Fly == true)
 				{
 					Debug.Log("Second If");
-					KCC.Data.Fly = false;
+					//KCC.Data.Fly = false;
 
 				}
+				
 			}
 
 			if (Input.WasActivated(EGameplayInputAction.Dash) == true)
