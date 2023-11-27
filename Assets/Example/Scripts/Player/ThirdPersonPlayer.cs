@@ -155,20 +155,17 @@ namespace Example
 
 			if (Input.WasActivated(EGameplayInputAction.Fly) == true)
 			{
-				if (KCC.Data.Fly != true)
-				{
-					//KCC.SetFly(Input.FixedInput.Fly);
-					KCC.Jump(flyRotation * FlyImpulse);
+                if (KCC.Data.Fly != true)
+                {
+                    KCC.SetFly(Input.FixedInput.Fly);
 					Debug.Log("First if");
-				}
-				else if (KCC.Data.Fly == true)
-				{
-					Debug.Log("Second If");
-					//KCC.Data.Fly = false;
-
-				}
-				
-			}
+                }
+                else if (KCC.Data.Fly == true)
+                {
+                    Debug.Log("Second If");
+					KCC.Data.Fly = false;
+                }
+            }
 
 			if (Input.WasActivated(EGameplayInputAction.Dash) == true)
 			{

@@ -2167,7 +2167,7 @@ namespace Fusion.KCC
 		{
 			data.Gravity        = Physics.gravity;
 			data.HasJumped      = default;
-			data.Fly = default;
+			//data.Fly = default;
 			data.HasTeleported  = default;
 			data.MaxGroundAngle = 75.0f;
 			data.MaxWallAngle   = 5.0f;
@@ -2219,13 +2219,13 @@ namespace Fusion.KCC
 					data.IsGrounded = false;
 				}
 
-                if (data.Fly == true)
-                {
-					data.IsGrounded = false;
-					data.WasGrounded = false;
-                }
+                //if (data.Fly == true)
+                //{
+                //    data.IsGrounded = false;
+                //    data.WasGrounded = false;
+                //}
 
-				if (data.IsGrounded == true)
+                if (data.IsGrounded == true)
 				{
 					CalculateGroundProperties(data);
 				}

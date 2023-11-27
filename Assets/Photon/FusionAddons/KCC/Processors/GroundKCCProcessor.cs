@@ -55,6 +55,9 @@ namespace Fusion.KCC
 		private float _slowWalkAngle = 48.0f;
 		[SerializeField][Tooltip("Custom jump multiplier.")]
 		private float _jumpMultiplier = 1.0f;
+		[SerializeField]
+		[Tooltip("Custom jump multiplier.")]
+		private float _flyMultiplier = 1.0f;
 		[SerializeField][Tooltip("Relative priority. Default ground processor priority is 2000.")]
 		private int   _relativePriority = 0;
 
@@ -92,7 +95,7 @@ namespace Fusion.KCC
 				data.DynamicVelocity += data.Gravity * data.DeltaTime;
 			}
 
-			if (data.JumpImpulse.IsZero() == false && _jumpMultiplier > 0.0f)
+			if (data.JumpImpulse.IsZero() == false && _jumpMultiplier > 0.0f && !data.Fly)
 			{
 				Vector3 jumpDirection = data.JumpImpulse.normalized;
 
@@ -101,6 +104,16 @@ namespace Fusion.KCC
 
 				data.HasJumped = true;
 			}
+
+            if (data.FlyImpulse.IsZero() == false && _flyMultiplier > 0.0f)
+            {
+				Vector3 flyDirection = data.FlyImpulse.normalized;
+
+				data.DynamicVelocity -= Vector3.Scale(data.DynamicVelocity, flyDirection);
+				data.DynamicVelocity += (data.FlyImpulse / kcc.Settings.Mass) * _flyMultiplier;
+
+				data.Fly = true;
+            }
 
 			data.DynamicVelocity += data.ExternalVelocity;
 			data.DynamicVelocity += data.ExternalAcceleration * data.DeltaTime;

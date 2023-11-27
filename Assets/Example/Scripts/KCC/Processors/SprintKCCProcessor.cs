@@ -12,6 +12,7 @@ namespace Example
 
 		[SerializeField]
 		private float _kinematicSpeedMultiplier = 2.0f;
+		[SerializeField] private float _kinematicFlySpeedMultiplier = 4f;
 
 		// KCCProcessor INTERFACE
 
@@ -30,11 +31,21 @@ namespace Example
 		public override void SetKinematicSpeed(KCC kcc, KCCData data)
 		{
 			// Apply the multiplier only if the Sprint property is set.
-			if (data.Sprint == true)
+			if (data.Sprint == true && !data.Fly)
 			{
 				data.KinematicSpeed *= _kinematicSpeedMultiplier;
 
 				// Suppress all other processors in same category (identified by the interface) with lower priority.
+				kcc.SuppressProcessors<IKinematicSpeedKCCProcessor>();
+			}
+            if (data.Fly == true)
+            {
+				data.KinematicSpeed *= _kinematicFlySpeedMultiplier;
+                if (data.GroundDistance > 0.001f)
+                {
+					data.DynamicVelocity += data.Gravity * data.DeltaTime;
+                }
+
 				kcc.SuppressProcessors<IKinematicSpeedKCCProcessor>();
 			}
 		}
