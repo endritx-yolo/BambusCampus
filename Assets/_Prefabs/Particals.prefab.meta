@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/FullSerializer.meta
+guid: 45520bbb1cf11ae49bc68fb7638977f4
+folderAsset: yes
+DefaultImporter:
+========
 guid: 1d1b370fa56bc2f4dac2a1b14efd2b83
 PrefabImporter:
+>>>>>>>> main:Assets/_Prefabs/Particals.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
