@@ -31,6 +31,7 @@ namespace Example
 		protected Transform        CameraHandle   => _cameraHandle;
 		protected float            MaxCameraAngle => _maxCameraAngle;
 		protected Vector3          JumpImpulse    => _jumpImpulse;
+		protected Vector3 FlyImpulse => _flyImpulse;
 		protected DashKCCProcessor DashProcessor  => _dashProcessor;
 
 		// PRIVATE MEMBERS
@@ -45,6 +46,8 @@ namespace Example
 		private float            _areaOfInterestRadius;
 		[SerializeField]
 		private Vector3          _jumpImpulse;
+		[SerializeField]
+		private Vector3 _flyImpulse;
 		[SerializeField]
 		private DashKCCProcessor _dashProcessor;
 

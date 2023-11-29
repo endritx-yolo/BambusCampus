@@ -91,7 +91,7 @@ public class SimpleAnimator : NetworkBehaviour
 
 
 
-        if (isJump)
+        if (isJump && !isFly)
         {
             animator.SetBool(JUMP_PARAM_HASH, true); // set jump if kcc.FixedData.HasJumped
         }
@@ -99,8 +99,8 @@ public class SimpleAnimator : NetworkBehaviour
         if (isFly)
         {
             animator.SetBool(FLY_HASH, true);
+            animator.SetBool(FALL_PARAM_HASH, false);
             animator.SetBool(IS_GROUNDED_PARAM_HASH, !isGrounded);
-
         }
         if (!isFly)
         {
@@ -119,7 +119,7 @@ public class SimpleAnimator : NetworkBehaviour
             {
                 animator.SetFloat(SPEED_PARAM_HASH, IDLE); // Is not moving, set to Idle
             }
-            else if (isSprint)
+            else if (isSprint && !isFly)
             {
                 animator.SetFloat(SPEED_PARAM_HASH, RUN); // Is moving and Sprint button pressed, set to Run
             }

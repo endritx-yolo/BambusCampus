@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gameplay_Bambus
       objectReference: {fileID: 0}
+    - target: {fileID: 4787825245574007066, guid: 36ba3480ded34f441a0d952459870465, type: 3}
+      propertyPath: recordingEnabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8953277532788236660, guid: 36ba3480ded34f441a0d952459870465, type: 3}
       propertyPath: m_RootOrder
       value: 0

@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -67,4 +68,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 468e6087fe4bd2b41a14dbe2b2886231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _kinematicSpeedMultiplier: 1.5
+  _kinematicSpeedMultiplier: 2
+  _kinematicFlySpeedMultiplier: 4

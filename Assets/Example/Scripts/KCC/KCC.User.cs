@@ -1,16 +1,24 @@
 namespace Fusion.KCC
 {
-	using System.Collections.Generic;
+    using global::Example;
+    using System.Collections.Generic;
+    using UnityEngine;
 
-	/// <summary>
-	/// Partial implementation of KCC class - use this to extend API with your own functionality - sprint, crouch, ...
-	/// Storing information usually requires adding a property in KCCData which has support for rollback.
-	/// </summary>
-	public partial class KCC
+    /// <summary>
+    /// Partial implementation of KCC class - use this to extend API with your own functionality - sprint, crouch, ...
+    /// Storing information usually requires adding a property in KCCData which has support for rollback.
+    /// </summary>
+    public partial class KCC
 	{
 		// PUBLIC METHODS
+		ThirdPersonPlayer thirdPersonPlayer;
 
-		public void SetSprint(bool sprint)
+        private void Start()
+        {
+			thirdPersonPlayer = GetComponent<ThirdPersonPlayer>();
+        }
+
+        public void SetSprint(bool sprint)
 		{
 			// Only input and state authority can modify the state
 			if (HasAnyAuthority == false)
@@ -39,7 +47,16 @@ namespace Fusion.KCC
 				return;
 
 			Data.Fly = fly;
+
+			//_renderData.FlyImpulse = impulse;
+
+   //         if (IsInFixedUpdate)
+   //         {
+			//	_fixedData.FlyImpulse += impulse;
+   //         }
+
         }
+
 		// Here you can add your own methods
 
 		// PARTIAL METHODS

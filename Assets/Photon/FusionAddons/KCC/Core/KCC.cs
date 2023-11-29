@@ -381,6 +381,19 @@ namespace Fusion.KCC
 			}
 		}
 
+		public void Fly(Vector3 impulse)
+        {
+			if (HasAnyAuthority == false)
+				return;
+
+			_renderData.FlyImpulse += impulse;
+
+            if (IsInFixedUpdate)
+            {
+				_fixedData.FlyImpulse += impulse;
+            }
+		}
+
 		/// <summary>
 		/// Add velocity from external sources. Should propagate in processors to <c>KCCData.DynamicVelocity</c>.
 		/// Changes done in render will vanish with next fixed update.
@@ -2154,6 +2167,7 @@ namespace Fusion.KCC
 		{
 			data.Gravity        = Physics.gravity;
 			data.HasJumped      = default;
+			//data.Fly = default;
 			data.HasTeleported  = default;
 			data.MaxGroundAngle = 75.0f;
 			data.MaxWallAngle   = 5.0f;
@@ -2205,7 +2219,13 @@ namespace Fusion.KCC
 					data.IsGrounded = false;
 				}
 
-				if (data.IsGrounded == true)
+                //if (data.Fly == true)
+                //{
+                //    data.IsGrounded = false;
+                //    data.WasGrounded = false;
+                //}
+
+                if (data.IsGrounded == true)
 				{
 					CalculateGroundProperties(data);
 				}
