@@ -9,6 +9,7 @@ namespace Fusion.KCC
         [SerializeField] private GameObject[] previewImage;
         [SerializeField] private GameObject[] panelImages;
         [SerializeField] private GameObject chatPanel;
+        [SerializeField] private GameObject hologram;
 
         void Start()
         {
@@ -30,6 +31,7 @@ namespace Fusion.KCC
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
                 chatPanel.gameObject.SetActive(false);
+                hologram.gameObject.SetActive(false);
             }
         }
 
@@ -60,6 +62,7 @@ namespace Fusion.KCC
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
             chatPanel.gameObject.SetActive(true);
+            hologram.gameObject.SetActive(true);
         }
 
         public void ShowImage1()
