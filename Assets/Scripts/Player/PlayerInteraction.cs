@@ -28,9 +28,10 @@ namespace PlayerInteraction
             _interactText.transform.LookAt(Camera.main.transform);
         }
 
-        private void InteractAction_OnCanInteractWithItem(bool displayInteractPopup)
+        private void InteractAction_OnCanInteractWithItem(bool displayInteractPopup, string message)
         {
             _followCamera = displayInteractPopup;
+            _interactText.text = message;
             _interactText.color = displayInteractPopup ? _colorFadeIn : _colorFadeOut;
         }
     }

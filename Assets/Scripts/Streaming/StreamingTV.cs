@@ -1,11 +1,20 @@
 using System;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace VideoStreaming
 {
-    public class StreamingTV : StreamingObject
+    public class StreamingTV : StreamingObject, IInteractableObject
     {
+        [BoxGroup("Display Message"), SerializeField] private string _displayMessage;
+
+        #region Properties
+
+        public String Message => _displayMessage;
+
+        #endregion
+        
         public Vector3 GetWorldPosition() => transform.position;
 
         private void OnEnable()
@@ -42,5 +51,7 @@ namespace VideoStreaming
                 return true;
             }
         }
+
+        public bool TryInteract() => TryTogglePlayPause();
     }
 }

@@ -1,18 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using System;
 using Leon;
 using NaughtyAttributes;
 using StarterAssets;
 using UnityEngine;
-using VideoStreaming;
 
 namespace PlayerActions
 {
     public class InteractAction : SceneSingleton<InteractAction>
     {
         public event Action OnInteract;
-        public event Action<bool> OnCanInteractWithItem;
+        public event Action<bool, string> OnCanInteractWithItem;
 
         private StarterAssetsInputs _input;
 
@@ -31,7 +28,6 @@ namespace PlayerActions
             _input = GetComponent<StarterAssetsInputs>();
         }
 
-
         private void Update()
         {
             if (_tempItemCheckInterval > 0f)
@@ -46,7 +42,11 @@ namespace PlayerActions
 
             if (_input.interact)
             {
-                ShootRaycast();
+                if (SitAction.Instance.IsSitting)
+                    SitAction.Instance.TryExecuteAction(null);
+                else
+                    ShootRaycast();
+
                 _input.interact = false;
             }
         }
@@ -54,19 +54,34 @@ namespace PlayerActions
         private void CheckForInteractableItems()
         {
             var item = TryGetRaycastHitObject();
-            OnCanInteractWithItem?.Invoke(item.hasHitObject);
+            string message = String.Empty;
+            bool displayMessage = false;
+
+            if (item.hasHitObject)
+            {
+                displayMessage = item.hasHitObject;
+                IInteractableObject interactableObject = item.newHit.transform.GetComponent<IInteractableObject>();
+                message = interactableObject.Message;
+            }
+
+            TryToShowInteractMessage(displayMessage, message);
         }
+
+        private void TryToShowInteractMessage(bool displayMessage, string messageContent) =>
+            OnCanInteractWithItem?.Invoke(displayMessage, messageContent);
 
         private void ShootRaycast()
         {
+            if (SitAction.Instance.IsSitting) return;
             var item = TryGetRaycastHitObject();
             if (!item.hasHitObject) return;
-            if (item.newHit.transform.TryGetComponent(out StreamingTV streamingTV))
+            if (item.newHit.transform.TryGetComponent(out IInteractableObject interactableObject))
             {
-                bool togglePlayPause = streamingTV.TryTogglePlayPause();
-                if (!togglePlayPause)
-                    Debug.LogWarning($"The {streamingTV} was not toggled.");
+                bool interacted = interactableObject.TryInteract();
+                if (!interacted)
+                    Debug.LogWarning($"The {interactableObject} was not interacted.");
             }
+
             /*Debug.DrawRay(_raycastOrigin.position,
                 _raycastOrigin.TransformDirection(Vector3.forward) * _raycastLength, Color.green);*/
         }

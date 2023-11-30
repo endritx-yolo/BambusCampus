@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2414197799455509820}
   - component: {fileID: 2414197799455509821}
+  - component: {fileID: 3025656662216992517}
   m_Layer: 0
   m_Name: OfflinePlayerFollowCamera
   m_TagString: Untagged
@@ -49,7 +50,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 10
+  m_Priority: 20
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
@@ -71,6 +72,18 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 2414197799952055544}
+--- !u!114 &3025656662216992517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2414197799455509699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1914a78f8855509459634cac0ea02944, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2414197799952055551
 GameObject:
   m_ObjectHideFlags: 0
