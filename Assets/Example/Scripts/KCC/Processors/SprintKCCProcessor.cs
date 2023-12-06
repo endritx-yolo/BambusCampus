@@ -34,20 +34,36 @@ namespace Example
 			if (data.Sprint == true && !data.Fly)
 			{
 				data.KinematicSpeed *= _kinematicSpeedMultiplier;
-
-				// Suppress all other processors in same category (identified by the interface) with lower priority.
-				kcc.SuppressProcessors<IKinematicSpeedKCCProcessor>();
 			}
-            if (data.Fly == true)
-            {
-				data.KinematicSpeed *= _kinematicFlySpeedMultiplier;
-                if (data.GroundDistance > 0.001f)
+			if (data.Fly == true)
+			{
+				if (Input.GetKey(KeyCode.W))
+				{
+					data.KinematicSpeed *= _kinematicFlySpeedMultiplier;
+					data.DynamicVelocity = new Vector3(transform.position.x, 10, transform.position.z);
+     //               if (data.DynamicVelocity == new Vector3(transform.position.x, 10, transform.position.z))
+     //               {
+					//	data.DynamicVelocity = new Vector3(transform.position.x, -1, transform.position.z);
+
+					//}
+				}
+				else if (Input.GetKey(KeyCode.S))
+				{
+					data.DynamicVelocity = new Vector3(transform.position.x, -10, transform.position.z);
+				}
+                else if (Input.GetKey(KeyCode.D))
                 {
-					data.DynamicVelocity += data.Gravity * data.DeltaTime;
-                }
-
-				kcc.SuppressProcessors<IKinematicSpeedKCCProcessor>();
+					data.KinematicSpeed *= _kinematicFlySpeedMultiplier;
+					data.DynamicVelocity = new Vector3(transform.position.x, -5, transform.position.z);
+				}
+				else if (Input.GetKey(KeyCode.A))
+                {
+					data.KinematicSpeed *= _kinematicFlySpeedMultiplier;
+					data.DynamicVelocity = new Vector3(transform.position.x, -5, transform.position.z);
+				}
 			}
+			kcc.SuppressProcessors<IKinematicSpeedKCCProcessor>();
 		}
+
 	}
 }

@@ -364,6 +364,11 @@ namespace Example
 				KCC.SetSprint(Input.CachedInput.Sprint);
 			}
 
+			if (KCC.RenderData.IsGrounded == true)
+			{
+				KCC.SetFly(Input.CachedInput.Fly);
+			}
+
 			// Is facing rotation set? Apply to the visual.
 			if (facingRotation.IsZero() == false)
 			{
