@@ -2219,11 +2219,12 @@ namespace Fusion.KCC
 					data.IsGrounded = false;
 				}
 
-                //if (data.Fly == true)
-                //{
-                //    data.IsGrounded = false;
-                //    data.WasGrounded = false;
-                //}
+                if (data.Fly == true)
+                {
+                    data.IsGrounded = false;
+                    data.WasGrounded = false;
+                }
+
 
                 if (data.IsGrounded == true)
 				{

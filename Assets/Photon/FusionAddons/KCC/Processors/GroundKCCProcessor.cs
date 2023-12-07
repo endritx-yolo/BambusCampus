@@ -105,16 +105,6 @@ namespace Fusion.KCC
 				data.HasJumped = true;
 			}
 
-            if (data.FlyImpulse.IsZero() == false && _flyMultiplier > 0.0f)
-            {
-				Vector3 flyDirection = data.FlyImpulse.normalized;
-
-				data.DynamicVelocity -= Vector3.Scale(data.DynamicVelocity, flyDirection);
-				data.DynamicVelocity += (data.FlyImpulse / kcc.Settings.Mass) * _flyMultiplier;
-
-				data.Fly = true;
-            }
-
 			data.DynamicVelocity += data.ExternalVelocity;
 			data.DynamicVelocity += data.ExternalAcceleration * data.DeltaTime;
 			data.DynamicVelocity += (data.ExternalImpulse / kcc.Settings.Mass);

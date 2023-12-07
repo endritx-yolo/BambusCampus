@@ -34,35 +34,8 @@ namespace Example
 			if (data.Sprint == true && !data.Fly)
 			{
 				data.KinematicSpeed *= _kinematicSpeedMultiplier;
+				kcc.SuppressProcessors<IKinematicSpeedKCCProcessor>();
 			}
-			if (data.Fly == true)
-			{
-				if (Input.GetKey(KeyCode.W))
-				{
-					data.KinematicSpeed *= _kinematicFlySpeedMultiplier;
-					data.DynamicVelocity = new Vector3(transform.position.x, 10, transform.position.z);
-     //               if (data.DynamicVelocity == new Vector3(transform.position.x, 10, transform.position.z))
-     //               {
-					//	data.DynamicVelocity = new Vector3(transform.position.x, -1, transform.position.z);
-
-					//}
-				}
-				else if (Input.GetKey(KeyCode.S))
-				{
-					data.DynamicVelocity = new Vector3(transform.position.x, -10, transform.position.z);
-				}
-                else if (Input.GetKey(KeyCode.D))
-                {
-					data.KinematicSpeed *= _kinematicFlySpeedMultiplier;
-					data.DynamicVelocity = new Vector3(transform.position.x, -5, transform.position.z);
-				}
-				else if (Input.GetKey(KeyCode.A))
-                {
-					data.KinematicSpeed *= _kinematicFlySpeedMultiplier;
-					data.DynamicVelocity = new Vector3(transform.position.x, -5, transform.position.z);
-				}
-			}
-			kcc.SuppressProcessors<IKinematicSpeedKCCProcessor>();
 		}
 
 	}

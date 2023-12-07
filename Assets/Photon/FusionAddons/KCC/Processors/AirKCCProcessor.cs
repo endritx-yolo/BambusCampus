@@ -54,6 +54,9 @@ namespace Fusion.KCC
 		[SerializeField][Tooltip("Relative priority. Default air processor priority is 1000.")]
 		private int   _relativePriority = 0;
 
+
+		[SerializeField] private float _kinematicFlySpeedMultiplier = 10f;
+
 		// KCCProcessor INTERFACE
 
 		public override float Priority => DefaultPriority + _relativePriority;
@@ -100,6 +103,34 @@ namespace Fusion.KCC
 				{
 					data.DynamicVelocity += KCCPhysicsUtility.GetFriction(data.DynamicVelocity, data.DynamicVelocity, new Vector3(1.0f, 0.0f, 1.0f), data.KinematicSpeed, true, 0.0f, 0.0f, _proportionalDynamicFriction, data.DeltaTime, kcc.FixedData.DeltaTime);
 				}
+			}
+
+			if (data.Fly == true)
+			{
+				data.KinematicSpeed *= _kinematicFlySpeedMultiplier;
+				data.DynamicVelocity = new Vector3(transform.position.x, 10, transform.position.z);
+                if (Input.GetKey(KeyCode.W))
+                {
+                    data.KinematicSpeed *= _kinematicFlySpeedMultiplier;
+                    data.DynamicVelocity = new Vector3(transform.position.x, -1, transform.position.z);
+
+					data.Fly = true;
+
+                }
+                else if (Input.GetKey(KeyCode.S))
+                {
+                    data.DynamicVelocity = new Vector3(transform.position.x, -1, transform.position.z);
+                }
+                else if (Input.GetKey(KeyCode.D))
+                {
+                    data.KinematicSpeed *= _kinematicFlySpeedMultiplier;
+                    data.DynamicVelocity = new Vector3(transform.position.x, -1, transform.position.z);
+                }
+                else if (Input.GetKey(KeyCode.A))
+                {
+                    data.KinematicSpeed *= _kinematicFlySpeedMultiplier;
+                    data.DynamicVelocity = new Vector3(transform.position.x, -1, transform.position.z);
+                }
 			}
 
 			SuppressOtherProcessors(kcc);

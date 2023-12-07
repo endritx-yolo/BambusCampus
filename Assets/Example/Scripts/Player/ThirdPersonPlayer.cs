@@ -364,7 +364,7 @@ namespace Example
 				KCC.SetSprint(Input.CachedInput.Sprint);
 			}
 
-			if (KCC.RenderData.IsGrounded == true)
+			if (KCC.RenderData.IsGrounded == true && Object.HasInputAuthority)
 			{
 				KCC.SetFly(Input.CachedInput.Fly);
 			}
