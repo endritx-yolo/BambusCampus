@@ -101,13 +101,13 @@ public class NetworkDebugStartGUI : Fusion.Behaviour {
         _networkDebugStart.StartSinglePlayer();
       }*/
 
-      if (Input.GetKeyDown(KeyCode.H)) {
+    /*  if (Input.GetKeyDown(KeyCode.H)) {
         if (_isMultiplePeerMode) {
           StartHostWithClients(_networkDebugStart);
         } else {
           _networkDebugStart.StartHost();
         }
-      }
+      }*/
 
       //if (Input.GetKeyDown(KeyCode.S)) {
       //  if (_isMultiplePeerMode) {
@@ -117,13 +117,13 @@ public class NetworkDebugStartGUI : Fusion.Behaviour {
       //  }
       //}
 
-      if (Input.GetKeyDown(KeyCode.C)) {
+     /* if (Input.GetKeyDown(KeyCode.C)) {
         if (_isMultiplePeerMode) {
           StartMultipleClients(nds);
         } else {
           nds.StartClient();
         }
-      }
+      }*/
 
       if (Input.GetKeyDown(KeyCode.A)) {
         if (_isMultiplePeerMode) {
@@ -212,7 +212,7 @@ public class NetworkDebugStartGUI : Fusion.Behaviour {
           //  }
           //}
 
-          if (GUILayout.Button(EnableHotkeys ? "Start Host (H)" : "Start Host", GUILayout.Height(height))) {
+        /*  if (GUILayout.Button(EnableHotkeys ? "Start Host (H)" : "Start Host", GUILayout.Height(height))) {
             if (_isMultiplePeerMode) {
               StartHostWithClients(nds);
             } else {
@@ -226,7 +226,7 @@ public class NetworkDebugStartGUI : Fusion.Behaviour {
             } else { 
               nds.StartClient();
             }
-          }
+          }*/
 
           if (GUILayout.Button(EnableHotkeys ? "Start Auto Host Or Client (A)" : "Start Auto Host Or Client", GUILayout.Height(height))) {
             if (_isMultiplePeerMode) {

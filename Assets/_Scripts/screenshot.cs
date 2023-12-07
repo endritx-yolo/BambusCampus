@@ -6,8 +6,10 @@ using UnityEngine.Rendering;
 
 namespace Fusion.KCC
 {
+    
     public class screenshot : MonoBehaviour
     {
+
         // Update is called once per frame
         void Update()
         {
@@ -48,5 +50,6 @@ namespace Fusion.KCC
             Application.ExternalEval(javaScriptCode);
         }
     }
+
 }
 
