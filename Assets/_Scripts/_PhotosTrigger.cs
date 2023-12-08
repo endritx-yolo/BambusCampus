@@ -11,14 +11,28 @@ namespace Fusion.KCC
         [SerializeField] private GameObject chatPanel;
         [SerializeField] private GameObject hologram;
 
+        public GameObject hideInstruction;
+
         void Start()
         {
+           
         }
 
         // Update is called once per frame
         void Update()
         {
-
+            if (Input.GetKeyDown(KeyCode.H))
+            {
+                HideInstruction();
+            }
+        }
+        public void HideInstruction()
+        {
+            if (hideInstruction)
+            {
+                // If it's currently active, hide it; otherwise, show it
+                hideInstruction.SetActive(!hideInstruction.activeSelf);
+            }
         }
         private void OnTriggerEnter(Collider other)
         {

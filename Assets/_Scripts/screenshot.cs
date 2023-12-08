@@ -13,11 +13,15 @@ namespace Fusion.KCC
         // Update is called once per frame
         void Update()
         {
+          
+
             if (Input.GetKeyDown(KeyCode.N))
             {
                 StartCoroutine(TakeScreenshot());
             }
         }
+        
+       
 
         IEnumerator TakeScreenshot()
         {
