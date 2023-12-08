@@ -152,20 +152,39 @@ namespace Example
 				// Sprint is updated only when grounded
 				KCC.SetSprint(Input.FixedInput.Sprint);
 			}
-
 			if (Input.WasActivated(EGameplayInputAction.Fly) == true)
 			{
                 if (KCC.Data.Fly != true)
                 {
                     KCC.SetFly(Input.FixedInput.Fly);
-					Debug.Log("First if");
+					KCC.Data.DeactiveFly = false;
+                    Debug.Log("First if");
                 }
                 else if (KCC.Data.Fly == true)
                 {
                     Debug.Log("Second If");
-					KCC.Data.Fly = false;
+                    KCC.Data.Fly = false;
+					KCC.Data.DeactiveFly = true;
                 }
+                // KCC.SetFly(FlyImpulse);
             }
+
+
+    //        if (Input.WasActivated(EGameplayInputAction.DeactiveFly) == true)
+    //        {
+    //            if (KCC.Data.DeactiveFly != true)
+    //            {
+				//	KCC.RemoveFly(Input.FixedInput.DeactiveFly);
+				//}
+    //            else if (KCC.Data.Fly == true)
+    //            {
+				//	KCC.Data.DeactiveFly = false;
+    //            }
+				////KCC.RemoveFly(RemoveFlyImpulse);
+				//Debug.Log(Input.WasActivated(EGameplayInputAction.DeactiveFly));
+    //        }
+
+
 
 			if (Input.WasActivated(EGameplayInputAction.Dash) == true)
 			{
@@ -364,10 +383,10 @@ namespace Example
 				KCC.SetSprint(Input.CachedInput.Sprint);
 			}
 
-			if (KCC.RenderData.IsGrounded == true && Object.HasInputAuthority)
-			{
-				KCC.SetFly(Input.CachedInput.Fly);
-			}
+			//if (KCC.RenderData.IsGrounded == true && Object.HasInputAuthority)
+			//{
+			//	KCC.SetFly(Input.CachedInput.Fly);
+			//}
 
 			// Is facing rotation set? Apply to the visual.
 			if (facingRotation.IsZero() == false)

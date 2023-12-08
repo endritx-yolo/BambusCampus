@@ -32,6 +32,7 @@ namespace Example
 		protected float            MaxCameraAngle => _maxCameraAngle;
 		protected Vector3          JumpImpulse    => _jumpImpulse;
 		protected Vector3 FlyImpulse => _flyImpulse;
+		protected Vector3 RemoveFlyImpulse => _removeFlyImpulse;
 		protected DashKCCProcessor DashProcessor  => _dashProcessor;
 
 		// PRIVATE MEMBERS
@@ -48,6 +49,8 @@ namespace Example
 		private Vector3          _jumpImpulse;
 		[SerializeField]
 		private Vector3 _flyImpulse;
+		[SerializeField]
+		private Vector3 _removeFlyImpulse;
 		[SerializeField]
 		private DashKCCProcessor _dashProcessor;
 

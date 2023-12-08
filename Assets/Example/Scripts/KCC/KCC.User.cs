@@ -46,16 +46,31 @@ namespace Fusion.KCC
 			if (HasAnyAuthority == false)
 				return;
 
-			Data.Fly = fly;
+            Data.Fly = fly;
 
-			//_renderData.FlyImpulse = impulse;
+            //_renderData.FlyForce = impulse;
 
-   //         if (IsInFixedUpdate)
-   //         {
-			//	_fixedData.FlyImpulse += impulse;
-   //         }
+            //if (IsInFixedUpdate)
+            //{
+            //    _fixedData.FlyForce += impulse;
+            //}
 
         }
+
+		public void RemoveFly(bool removeFly)
+        {
+			if (HasAnyAuthority == false)
+				return;
+
+			Data.DeactiveFly = removeFly;
+
+			//_renderData.DownFlyForce = impulse;
+
+			//if (IsInFixedUpdate)
+			//{
+			//	_fixedData.DownFlyForce += impulse;
+			//}
+		}
 
 		// Here you can add your own methods
 

@@ -105,35 +105,26 @@ namespace Fusion.KCC
 				}
 			}
 
-			if (data.Fly == true)
-			{
-				data.KinematicSpeed *= _kinematicFlySpeedMultiplier;
-				data.DynamicVelocity = new Vector3(transform.position.x, 10, transform.position.z);
-                if (Input.GetKey(KeyCode.W))
-                {
-                    data.KinematicSpeed *= _kinematicFlySpeedMultiplier;
-                    data.DynamicVelocity = new Vector3(transform.position.x, -1, transform.position.z);
+            if (data.Fly == true)
+            {
+               
 
-					data.Fly = true;
-
-                }
-                else if (Input.GetKey(KeyCode.S))
+                if (Input.GetKey(KeyCode.G))
                 {
-                    data.DynamicVelocity = new Vector3(transform.position.x, -1, transform.position.z);
-                }
-                else if (Input.GetKey(KeyCode.D))
-                {
-                    data.KinematicSpeed *= _kinematicFlySpeedMultiplier;
-                    data.DynamicVelocity = new Vector3(transform.position.x, -1, transform.position.z);
-                }
-                else if (Input.GetKey(KeyCode.A))
-                {
-                    data.KinematicSpeed *= _kinematicFlySpeedMultiplier;
-                    data.DynamicVelocity = new Vector3(transform.position.x, -1, transform.position.z);
-                }
+					//data.DynamicVelocity += data.FlyForce;
+					data.DynamicVelocity = new Vector3(transform.position.x, 10, transform.position.z);
+				}
 			}
 
-			SuppressOtherProcessors(kcc);
+            if (data.DeactiveFly == true)
+            {
+				data.KinematicSpeed *= _kinematicFlySpeedMultiplier;
+				data.DynamicVelocity = new Vector3(transform.position.x, -10, transform.position.z);
+
+				//data.DynamicVelocity -= data.DownFlyForce;
+			}
+
+            SuppressOtherProcessors(kcc);
 		}
 
 		public override void SetKinematicDirection(KCC kcc, KCCData data)
@@ -165,6 +156,11 @@ namespace Fusion.KCC
 		public override void SetKinematicSpeed(KCC kcc, KCCData data)
 		{
 			data.KinematicSpeed = _kinematicSpeed;
+            if (data.Fly)
+            {
+				data.KinematicSpeed *= _kinematicFlySpeedMultiplier;
+			}
+			
 
 			SuppressOtherProcessors(kcc);
 		}
@@ -183,6 +179,7 @@ namespace Fusion.KCC
 			{
 				data.KinematicVelocity -= data.KinematicVelocity * (1.0f - Mathf.Clamp01(Vector3.Dot(data.KinematicVelocity.OnlyXZ().normalized, data.KinematicDirection.OnlyXZ().normalized))) * Mathf.Min(_kinematicDirectionResponsivity, 1.0f);
 			}
+
 
 			Vector3 dynamicVelocity   = data.DynamicVelocity;
 			Vector3 kinematicVelocity = data.KinematicVelocity;

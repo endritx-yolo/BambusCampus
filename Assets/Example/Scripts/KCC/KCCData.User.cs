@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Fusion.KCC
 {
 	/// <summary>
@@ -10,6 +12,10 @@ namespace Fusion.KCC
 
 		public bool Sprint;
 		public bool Fly;
+		public bool DeactiveFly;
+
+		public Vector3 FlyForce;
+		public Vector3 DownFlyForce;
 		// PARTIAL METHODS
 
 		partial void ClearUserData()
@@ -25,6 +31,9 @@ namespace Fusion.KCC
 
 			Sprint = other.Sprint;
 			Fly = other.Fly;
+			FlyForce = other.FlyForce;
+			DeactiveFly = other.DeactiveFly;
+			DownFlyForce = other.DownFlyForce;
 		}
 	}
 }

@@ -90,15 +90,15 @@ namespace Fusion.Example
 				data.HasJumped = true;
 			}
 
-            if (fixedData.IsGrounded == true && data.FlyImpulse.IsZero() == false && _flyMultiplier > 0.0f)
-            {
-				Vector3 flyDirection = data.FlyImpulse.normalized;
+    //        if (fixedData.IsGrounded == true && data.FlyForce.IsZero() == false && _flyMultiplier > 0.0f)
+    //        {
+				//Vector3 flyDirection = data.FlyForce.normalized;
 
-				dynamicVelocity -= Vector3.Scale(dynamicVelocity, flyDirection);
-				dynamicVelocity += (data.FlyImpulse / kcc.Settings.Mass) * _flyMultiplier;
+				//dynamicVelocity -= Vector3.Scale(dynamicVelocity, flyDirection);
+				//dynamicVelocity += (data.FlyForce / kcc.Settings.Mass) * _flyMultiplier;
 
-				data.Fly = true;
-            }
+				//data.Fly = true;
+    //        }
 
 			dynamicVelocity += data.ExternalVelocity;
 			dynamicVelocity += data.ExternalAcceleration * fixedDeltaTime;

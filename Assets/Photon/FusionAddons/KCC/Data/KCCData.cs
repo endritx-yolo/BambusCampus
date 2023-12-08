@@ -175,7 +175,6 @@ namespace Fusion.KCC
 		/// </summary>
 		public Vector3 JumpImpulse;
 
-		public Vector3 FlyImpulse;
 
 		/// <summary>
 		/// Gravitational acceleration
@@ -412,7 +411,6 @@ namespace Fusion.KCC
 
 			InputDirection               = other.InputDirection;
 			JumpImpulse                  = other.JumpImpulse;
-			FlyImpulse = other.FlyImpulse;
 			Gravity                      = other.Gravity;
 			MaxGroundAngle               = other.MaxGroundAngle;
 			MaxWallAngle                 = other.MaxWallAngle;

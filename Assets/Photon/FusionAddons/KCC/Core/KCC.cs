@@ -386,11 +386,11 @@ namespace Fusion.KCC
 			if (HasAnyAuthority == false)
 				return;
 
-			_renderData.FlyImpulse += impulse;
+			_renderData.FlyForce += impulse;
 
             if (IsInFixedUpdate)
             {
-				_fixedData.FlyImpulse += impulse;
+				_fixedData.FlyForce += impulse;
             }
 		}
 

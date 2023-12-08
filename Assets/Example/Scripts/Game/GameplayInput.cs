@@ -14,6 +14,7 @@ namespace Example
 		LeftTrigger  = 6,
 		RightTrigger = 7,
 		Fly = 8,
+		DeactiveFly = 9,
 	}
 
 	/// <summary>
@@ -42,6 +43,7 @@ namespace Example
 		public bool LeftTrigger  { get { return Actions.IsSet(EGameplayInputAction.LeftTrigger);  } set { Actions.Set(EGameplayInputAction.LeftTrigger,  value); } }
 		public bool RightTrigger { get { return Actions.IsSet(EGameplayInputAction.RightTrigger); } set { Actions.Set(EGameplayInputAction.RightTrigger, value); } }
 		public bool Fly { get { return Actions.IsSet(EGameplayInputAction.Fly); } set { Actions.Set(EGameplayInputAction.Fly, value); } }
+		public bool DeactiveFly { get { return Actions.IsSet(EGameplayInputAction.DeactiveFly); } set { Actions.Set(EGameplayInputAction.DeactiveFly, value); } }
 	}
 
 	public static class GameplayInputActionExtensions
