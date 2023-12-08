@@ -107,21 +107,20 @@ namespace Fusion.KCC
 
             if (data.Fly == true)
             {
-               
-
-                if (Input.GetKey(KeyCode.G))
+                //data.DynamicVelocity += data.FlyForce;
+                if (data.GiveForceFly)
                 {
-					//data.DynamicVelocity += data.FlyForce;
 					data.DynamicVelocity = new Vector3(transform.position.x, 10, transform.position.z);
+				}
+				if (data.DynamicVelocity.IsAlmostZero(0.001f) == true)
+				{
+					data.DynamicVelocity = default;
 				}
 			}
 
             if (data.DeactiveFly == true)
             {
-				data.KinematicSpeed *= _kinematicFlySpeedMultiplier;
 				data.DynamicVelocity = new Vector3(transform.position.x, -10, transform.position.z);
-
-				//data.DynamicVelocity -= data.DownFlyForce;
 			}
 
             SuppressOtherProcessors(kcc);
@@ -156,12 +155,11 @@ namespace Fusion.KCC
 		public override void SetKinematicSpeed(KCC kcc, KCCData data)
 		{
 			data.KinematicSpeed = _kinematicSpeed;
-            if (data.Fly)
+			if (data.Fly)
             {
 				data.KinematicSpeed *= _kinematicFlySpeedMultiplier;
 			}
 			
-
 			SuppressOtherProcessors(kcc);
 		}
 

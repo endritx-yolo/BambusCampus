@@ -13,6 +13,7 @@ namespace Fusion.KCC
 		public bool Sprint;
 		public bool Fly;
 		public bool DeactiveFly;
+		public bool GiveForceFly;
 
 		public Vector3 FlyForce;
 		public Vector3 DownFlyForce;
@@ -34,6 +35,7 @@ namespace Fusion.KCC
 			FlyForce = other.FlyForce;
 			DeactiveFly = other.DeactiveFly;
 			DownFlyForce = other.DownFlyForce;
+			GiveForceFly = other.GiveForceFly;
 		}
 	}
 }

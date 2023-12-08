@@ -158,7 +158,7 @@ namespace Example
                 {
                     KCC.SetFly(Input.FixedInput.Fly);
 					KCC.Data.DeactiveFly = false;
-                    Debug.Log("First if");
+					Debug.Log("First if");
                 }
                 else if (KCC.Data.Fly == true)
                 {
@@ -168,21 +168,30 @@ namespace Example
                 }
                 // KCC.SetFly(FlyImpulse);
             }
+			if (Input.WasActivated(EGameplayInputAction.GiveForceFly) == true && !KCC.Data.IsGrounded)	
+			{
+				KCC.Data.GiveForceFly = true;
+				Debug.Log("test");
+			}
+			else if (Input.WasDeactivated(EGameplayInputAction.GiveForceFly) == true)
+			{
+				KCC.Data.GiveForceFly = false;
+			}
 
 
-    //        if (Input.WasActivated(EGameplayInputAction.DeactiveFly) == true)
-    //        {
-    //            if (KCC.Data.DeactiveFly != true)
-    //            {
-				//	KCC.RemoveFly(Input.FixedInput.DeactiveFly);
-				//}
-    //            else if (KCC.Data.Fly == true)
-    //            {
-				//	KCC.Data.DeactiveFly = false;
-    //            }
-				////KCC.RemoveFly(RemoveFlyImpulse);
-				//Debug.Log(Input.WasActivated(EGameplayInputAction.DeactiveFly));
-    //        }
+			//        if (Input.WasActivated(EGameplayInputAction.DeactiveFly) == true)
+			//        {
+			//            if (KCC.Data.DeactiveFly != true)
+			//            {
+			//	KCC.RemoveFly(Input.FixedInput.DeactiveFly);
+			//}
+			//            else if (KCC.Data.Fly == true)
+			//            {
+			//	KCC.Data.DeactiveFly = false;
+			//            }
+			////KCC.RemoveFly(RemoveFlyImpulse);
+			//Debug.Log(Input.WasActivated(EGameplayInputAction.DeactiveFly));
+			//        }
 
 
 
